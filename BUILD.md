@@ -34,8 +34,8 @@ Build dependencies:
 3. Glew
 - Download/Clone https://github.com/nigels-com/glew
 - Run Cygwin. Install "make" "perl" and "python" if it hasn't. Do:
-# cd to glew/auto/
-# make
+$ cd to glew/auto/
+$ make
 - This should create include dir (according to: https://github.com/nigels-com/glew/issues/13)
 - Open glew VS project on glew\build\vc10.
 - Go to Properties>Linker>Input>IgnoreAllDefaultLibraries and set it to false.
