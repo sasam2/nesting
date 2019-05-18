@@ -19,7 +19,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v100</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -43,10 +43,12 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>C:\Users\sofia\Documents\Projects3\Dependencies\CGAL-3.9\include;C:\Users\sofia\Documents\Projects3\Dependencies\Boost-1_56\include;C:\Users\sofia\Documents\Projects3\Dependencies\opencv-2.4.9\build\include;C:\Users\sofia\Documents\Projects3\Dependencies\glew-2.1.0\include;C:\Users\sofia\Documents\Projects3\Dependencies\glui-2.37\include;C:\Users\sofia\Documents\Projects3\Dependencies\freeglut-3.0.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glui32d.lib;opencv_imgproc231d.lib;opencv_highgui231d.lib;opencv_core231d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32d.lib;glui32d.lib;opencv_imgproc249d.lib;opencv_highgui249d.lib;opencv_core249d.lib;freeglutd.lib;CGAL-vc100-mt-gd.lib;libboost_thread-vc100-mt-gd-1_56.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\sofia\Documents\Projects3\Dependencies\glew-2.1.0\lib;C:\Users\sofia\Documents\Projects3\Dependencies\Boost-1_56\lib;C:\Users\sofia\Documents\Projects3\Dependencies\CGAL-3.9\lib;C:\Users\sofia\Documents\Projects3\Dependencies\freeglut-3.0.0\lib;C:\Users\sofia\Documents\Projects3\Dependencies\opencv-2.4.9\build\x86\vc10\lib;C:\Users\sofia\Documents\Projects3\Dependencies\glui-2.37\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
