@@ -1,0 +1,16 @@
+PIECES
+trousers.txt
+0
+
+STOCK SHEET
+trousers_strip.txt
+1
+
+ROTATIONS
+180
+
+RESOLUTION
+0.25
+
+MARGIN
+1

@@ -197,11 +197,11 @@ IplImage *getOpenCVImage(int xb, int yb, int width, int height, int channel)
 	return img;
 }
 
-pair<vector<vector<cv::Point>>, vector<cv::Vec4i>> getContours(IplImage *img, double maxDist)
+pair<vector<vector<cv::Point>>, vector<cv::Vec4i>> getContours(cv::Mat mat, double maxDist)
 {
 	vector<vector<cv::Point>> contours;
 	vector<cv::Vec4i> hierarchy;
-	cv::findContours(cv::Mat(img), contours, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE);
+	cv::findContours(mat, contours, hierarchy, cv::RETR_CCOMP, cv::CHAIN_APPROX_SIMPLE);
 
 	vector<Piece> pieces = contourVecPieceVec(contours);
 	ofstream f;
@@ -236,15 +236,14 @@ pair<vector<vector<cv::Point>>, vector<cv::Vec4i>> getContours(IplImage *img, do
 
 void drawContour(IplImage *img, vector<cv::Point> contour, cv::Scalar color)
 {
-	cv::Mat imgMat(img);
+	cv::Mat imgMat =  cv::cvarrToMat(img);
 	vector<vector<cv::Point>> contours;
 	contours.push_back(contour);
 	cv::drawContours(imgMat, contours, 0, color);
 }
 
-vector<vector<cv::Point>> showContours(IplImage *thrImg)
+vector<vector<cv::Point>> showContours(cv::Mat thrImgMat)
 {
-	cv::Mat thrImgMat(thrImg);
 	cv::Mat cntrImgMat(thrImgMat.rows, thrImgMat.cols, CV_8UC1, cv::Scalar(0));
 	cv::Mat invCntrImgMat(thrImgMat.rows, thrImgMat.cols, CV_8UC1, cv::Scalar(0));
 	cv::Mat displayImgMat(thrImgMat.rows*2/*3*/, thrImgMat.cols, CV_8UC1, cv::Scalar(0));
@@ -260,15 +259,18 @@ vector<vector<cv::Point>> showContours(IplImage *thrImg)
 	thrImgMat.copyTo(roi);
 
 	//desenhar contornos invertidos
-	cvThreshold(thrImg, &(IplImage)invCntrImgMat, 0, 255, CV_THRESH_BINARY_INV);
-	pair<vector<vector<cv::Point>>, vector<cv::Vec4i>> contoursPair = getContours(&(IplImage)invCntrImgMat, 1.0);
+	cv::threshold(thrImgMat, invCntrImgMat, 0, 255, cv::ThresholdTypes::THRESH_BINARY_INV);
+	pair<vector<vector<cv::Point>>, vector<cv::Vec4i>> contoursPair = getContours(invCntrImgMat, 1.0);
 	contours = contoursPair.first;
 	cv::drawContours(invCntrImgMat, contours, -1, cv::Scalar(255));
 	roi = cv::Mat(displayImgMat, cv::Rect(cv::Point(0, invCntrImgMat.rows/*2*/), invCntrImgMat.size()));
 	invCntrImgMat.copyTo(roi);
 
 	//mostrar imagem
-	cvConvertImage(&(IplImage)displayImgMat,  &(IplImage)displayImgMat, CV_CVTIMG_FLIP);
+	//cvConvertImage(displayImgMat, displayImgMat, CV_CVTIMG_FLIP);
+
+	cv::imshow(windowName, displayImgMat);
+
 #ifdef DEBUG
 	cvShowImage(windowName, &(IplImage)displayImgMat);
 #endif
@@ -280,12 +282,13 @@ vector<vector<cv::Point>> showContours(IplImage *thrImg)
 
 void updateThresholdImage(int bar, void *img)
 {
-	IplImage *thrImg = cvCreateImage(cvSize(((IplImage*)img)->width, ((IplImage*)img)->height), IPL_DEPTH_8U,1);
+	cv::Mat thrImg = cv::Mat(cvSize(((IplImage*)img)->width, ((IplImage*)img)->height), CV_8UC1);
 	threshold = (unsigned char)(intMinThreshold+(step*bar));
-	cvThreshold(img, thrImg, threshold, 0, CV_THRESH_TOZERO);
+	cv::Mat imgMat = cv::cvarrToMat((IplImage*)img);
+	cv::threshold(imgMat, thrImg, threshold, 0, cv::THRESH_TOZERO);
 	//cvShowImage(windowName, thrImg);
 	showContours(thrImg);
-	cvReleaseImage(&thrImg);
+	//cvReleaseImage(&thrImg);
 }
 
 void evaluateThresholdWindow(IplImage *img, int stepInit)
@@ -303,16 +306,17 @@ void evaluateThresholdWindow(IplImage *img, int stepInit)
 	//cvMinMaxLoc(img, &intMinThreshold, &intMaxThreshold);
 	maxBar=((int)intMaxThreshold-(int)intMinThreshold)/step;
 
-	cvNamedWindow(windowName, CV_WINDOW_AUTOSIZE);
-	cvMoveWindow(windowName, 110, 110);
-	cvCreateTrackbar2("Threshold", windowName, &bar, maxBar, updateThresholdImage, img);
+	cv::namedWindow(windowName, cv::WINDOW_AUTOSIZE);
+	cv::moveWindow(windowName, 110, 110);
+	cv::createTrackbar( "Threshold", windowName, &bar, maxBar, updateThresholdImage, img);
 
 	updateThresholdImage(0,img);
 }
 
 vector<vector<cv::Point>> getFeasiblePositions(IplImage * image)
 {
-	return showContours(image);
+	cv::Mat imageMat = cv::cvarrToMat(image);
+	return showContours(imageMat);
 }
 
 cv::Point bottomLeft(vector<vector<cv::Point>> feasiblePositions)

@@ -1,7 +1,9 @@
 #pragma once
-#include <GL\glut.h>
-#include <opencv\cv.h>
-#include <opencv\highgui.h>
+#include <GL/glut.h>
+#include <opencv2/opencv.hpp>
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/core/types_c.h>
+#include <opencv2/core/core_c.h>
 #include <vector>
 #include <unordered_set>
 #include "Problem.h"
@@ -53,7 +55,7 @@ cv::Point bottomLeft(vector<vector<cv::Point>> feasiblePositions);
 GLdouble* bottomLeft(vector<vector<GLdouble*>> feasiblePositions);
 //Contour and Threshold functions
 IplImage *getOpenCVImage(int xb, int yb, int width, int height, int channel=GL_BLUE);
-pair<vector<vector<cv::Point>>, vector<cv::Vec4i>> getContours(IplImage *img, double maxDist);
+pair<vector<vector<cv::Point>>, vector<cv::Vec4i>> getContours(cv::Mat mat, double maxDist);
 void drawContour(IplImage *img, vector<cv::Point> contour, cv::Scalar color);
 //void showContours(IplImage *thrImg);
 //void updateThresholdImage(int bar, void *img);

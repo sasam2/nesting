@@ -12,6 +12,7 @@ void solveCB(int dummy)
 	int delimiter = problemNameStr.find('.')+1;
 	string extension = problemNameStr.substr(delimiter, problemNameStr.size());
 
+
 	if(extension.compare("dat")==0)
 		layout = loadConfigurationFileIrregularProblem(problemName);
 	else
@@ -33,7 +34,7 @@ void heuristicCB(int h_choosen)
 void updateSolvingConfiguration()
 {
 	//problemName=(char*)edittext_file->get_text();
-	strcpy ( problemName, (char*)edittext_file->get_text() );
+	strcpy ( problemName, edittext_file->get_text().c_str());
 	saveAll=radiogroup_heuristic->get_int_val();
 	staticHeuristic=radiogroup_staticheuristic->get_int_val()+1;
 	//define nfps function

@@ -1,0 +1,16 @@
+PIECES
+marques.txt
+1
+
+STOCK SHEET
+marques_strip.txt
+1
+
+ROTATIONS
+90
+
+RESOLUTION
+0.20
+
+MARGIN
+1

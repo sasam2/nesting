@@ -12,6 +12,8 @@ Layout loadLayout(char* filename)
 {
 	vector<string> parameters = loadConfigurationFile(filename);
 	int piecesFileFormat = atoi(parameters[1].c_str());
+
+
 	Problem problem = loadFile((char*)parameters[0].c_str(), piecesFileFormat);
 	int stockSheetFormat = atoi(parameters[3].c_str());
 	Piece stockSheet = loadFile((char*)parameters[2].c_str(), stockSheetFormat).getPieces()[0];
@@ -31,7 +33,10 @@ vector<string> loadConfigurationFile(char* filename)
 	string piecesFile, piecesFormat, stockSheetFile, stockSheetFormat, rotationStep, resolution, margin;
 
 	vector<string> parameters;
-	ifstream file (filename);
+	char filePath[1024] = "problems/";
+	strcat(filePath, filename);
+
+	ifstream file (filePath);
 	//get pieces file
 	getFirstNonEmptyLine(&file, &piecesFile);
 	getFirstNonEmptyLine(&file, &piecesFile);
@@ -64,7 +69,11 @@ vector<string> loadConfigurationFile(char* filename)
 Problem loadFile(char* filename, bool mode)
 {
 	string line;
-	ifstream file (filename);
+
+	char filePath[1024] = "problems/";
+	strcat(filePath, filename);
+
+	ifstream file(filePath);
 	Problem problem;
 
 	if (file.is_open())
@@ -149,7 +158,10 @@ Layout loadConfigurationFileIrregularProblem(char* filename)
 	int nrStockSheets;
 	int nr_patterns;
 
-	ifstream file (filename);
+	char filePath[1024] = "problems/";
+	strcat(filePath, filename);
+
+	ifstream file(filePath);
 
 	//get pieces file
 	getFirstNonEmptyLine(&file, &scaleFactor);
@@ -207,7 +219,10 @@ Layout loadConfigurationFileIrregularProblem(char* filename)
 Piece loadPieceFileIrregularProblem(char* filename)
 {
 	string line;
-	ifstream file (filename);
+	char filePath[1024] = "problems/";
+	strcat(filePath, filename);
+
+	ifstream file(filePath);
 	
 	getFirstNonEmptyLine(&file, &line);
 	getFirstNonEmptyLine(&file, &line); //ignorar barycentro

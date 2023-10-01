@@ -7,7 +7,7 @@
 #include <vector>
 #include <map>
 #include <limits>
-#include <GL\glut.h>
+#include <GL/glut.h>
 #include "Piece.h"
 
 #include <stdlib.h>

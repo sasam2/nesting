@@ -1,0 +1,16 @@
+PIECES
+shapes.txt
+0
+
+STOCK SHEET
+shapes_stock_sheet.txt
+1
+
+ROTATIONS
+90
+
+RESOLUTION
+0.20
+
+MARGIN
+0

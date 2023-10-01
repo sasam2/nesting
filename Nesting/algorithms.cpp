@@ -469,7 +469,9 @@ Point_2 dynamicPieceSelection()
 		cvMinMaxLoc(imgTest, &intMinThreshold, &intMaxThreshold);
 		intMaxThreshold--;
 
-		cvThreshold(imgTest, imgTest, intMaxThreshold, 255, CV_THRESH_BINARY);
+		cv::Mat imgTestMat = cv::cvarrToMat(imgTest);
+
+		cv::threshold(imgTestMat, imgTestMat, intMaxThreshold, 255, cv::THRESH_BINARY);
 #ifdef DEBUG
 		char imageName[100];
 		sprintf(imageName, "NFPs PBO %d %d.jpg", (int)itImg->first.x(), (int)itImg->first.y());

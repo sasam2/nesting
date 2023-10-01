@@ -1,0 +1,16 @@
+PIECES
+shirts.txt
+0
+
+STOCK SHEET
+shirts_strip.txt
+1
+
+ROTATIONS
+0
+
+RESOLUTION
+0.20
+
+MARGIN
+1

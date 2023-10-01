@@ -1,6 +1,6 @@
 #pragma once
-#include "GL/glew.h"
-#include "GL/glui.h"
+#include <GL/glew.h>
+#include <GL/glui.h>
 #include "Picture.h"
 #include "imageProcessing.h"
 

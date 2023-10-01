@@ -1,0 +1,16 @@
+PIECES
+fu.txt
+1
+
+STOCK SHEET
+fu_strip.txt
+1
+
+ROTATIONS
+90
+
+RESOLUTION
+0.20
+
+MARGIN
+1

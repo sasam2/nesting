@@ -1,9 +1,10 @@
 #pragma once
 #include <iostream>
 #include <vector>
-#include <GL\glut.h>
-#include <opencv\cv.h>
-#include <opencv\highgui.h>
+#include <GL/glut.h>
+#include <opencv2/opencv.hpp>
+#include <opencv2/highgui/highgui.hpp>
+
 using namespace std;
 
 typedef vector<GLdouble*> Component;

@@ -1,0 +1,18 @@
+PIECES
+swim.txt
+0
+
+STOCK SHEET
+swim_strip.txt
+1
+
+ROTATIONS
+180
+
+RESOLUTION
+20
+
+MARGIN
+1
+
+

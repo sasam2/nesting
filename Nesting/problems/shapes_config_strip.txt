@@ -1,0 +1,16 @@
+PIECES
+shapes.txt
+0
+
+STOCK SHEET
+shapes_strip.txt
+1
+
+ROTATIONS
+180
+
+RESOLUTION
+0.20
+
+MARGIN
+1

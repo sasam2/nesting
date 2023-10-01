@@ -1,0 +1,16 @@
+PIECES
+mao.txt
+1
+
+STOCK SHEET
+mao_strip.txt
+1
+
+ROTATIONS
+90
+
+RESOLUTION
+10
+
+MARGIN
+0

@@ -6,7 +6,7 @@
 #define CALLBACK
 #endif
 
-//#define DEBUG
+#define DEBUG
 
 
 // function declarations //////////////////////////////////////////////////////
@@ -29,7 +29,7 @@ GLUI_RadioGroup *radiogroup_nfps; //"PreProcessing.h"
 vector<Polygon_2> (*nfps)(vector<Polygon_2>, vector<Polygon_2>);//"PreProcessing.h"
 
 //Load problem
-char problemName[1024]="shapes_config.txt"; //"shapes_config.txt"; //"PreProcessing.h" "algorithms.h"
+char problemName[1024]="shapes_config_stock_sheet.txt"; //"shapes_config.txt"; //"PreProcessing.h" "algorithms.h"
 Layout layout; //"PreProcessing.h" "algorithms.h"
 
 //Positioning Algorithms
